@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BIT Soft | Buch Inovações e Tecnologia</title>
+  <meta name="description" content="BIT Soft - Software House profissional. Desenvolvimento de software, aplicações web, mobile, cloud e inteligência artificial.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0B5FFF;
+      --primary-dark: #0847c7;
+      --dark: #071C3D;
+      --darker: #041029;
+      --gray: #64748b;
+      --light: #f1f5f9;
+      --white: #ffffff;
+      --radius: 14px;
+      --shadow: 0 15px 40px rgba(7,28,61,0.12);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+      background: var(--white);
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    /* TOPBAR */
+    .topbar {
+      background: var(--darker);
+      color: #94a3b8;
+      font-size: 13.5px;
+      padding: 10px 0;
+      position: relative;
+      top: 60px;
+    }
+    .topbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .topbar-left, .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+    .topbar a { color: #94a3b8; transition: color 0.2s; }
+    .topbar a:hover { color: white; }
+    .topbar i { margin-right: 6px; color: var(--primary); }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    header.scrolled {
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+    }
+    header.scrolled .nav-links a { color: var(--dark); }
+    header.scrolled .logo-text { color: var(--dark); }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo img { height: 44px; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-links a {
+      font-size: 14.5px;
+      font-weight: 500;
+      color: white;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 14.5px;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(11,95,255,0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .btn-outline:hover {
+      background: white;
+      color: var(--dark);
+      border-color: white;
+    }
+    .btn-white {
+      background: white;
+      color: var(--primary);
+    }
+    .btn-white:hover {
+      background: #f0f7ff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    header.scrolled .mobile-toggle { color: var(--dark); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #041029 0%, #071C3D 40%, #0a2a5c 100%);
+      color: white;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 140px 24px 80px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(11,95,255,0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(59,130,246,0.15) 0%, transparent 45%);
+      pointer-events: none;
+    }
+    .hero-shapes {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(11,95,255,0.08);
+      animation: float 18s infinite ease-in-out;
+    }
+    .shape-1 { width: 400px; height: 400px; top: -100px; right: -80px; }
+    .shape-2 { width: 250px; height: 250px; bottom: 10%; left: -60px; animation-delay: -5s; }
+    .shape-3 { width: 180px; height: 180px; top: 40%; right: 15%; animation-delay: -10s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(5deg); }
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(11,95,255,0.2);
+      border: 1px solid rgba(11,95,255,0.4);
+      color: #93c5fd;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 18px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.12;
+      margin-bottom: 22px;
+      letter-spacing: -0.03em;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, #60a5fa, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      max-width: 620px;
+      margin: 0 auto 40px;
+      font-weight: 400;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 70px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-item { text-align: center; }
+    .stat-item h2 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 4px;
+    }
+    .stat-item span {
+      font-size: 0.95rem;
+      color: #94a3b8;
+    }
+
+    /* SECTIONS */
+    .section { padding: 100px 24px; }
+    .section-container { max-width: 1200px; margin: 0 auto; }
+    .section-header {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 60px;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      margin-bottom: 14px;
+    }
+    .section-header h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: var(--dark);
+    }
+    .section-header p { color: var(--gray); font-size: 1.1rem; }
+
+    /* WHY US */
+    .why-us { background: var(--light); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+    .why-card {
+      background: white;
+      padding: 36px 28px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+    .why-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(11,95,255,0.2);
+      box-shadow: 0 25px 50px rgba(11,95,255,0.12);
+    }
+    .why-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, rgba(11,95,255,0.12), rgba(59,130,246,0.08));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 22px;
+    }
+    .why-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
+    .why-card p { color: var(--gray); font-size: 0.95rem; }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 70px;
+      align-items: center;
+    }
+    .about-image { position: relative; }
+    .about-image img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      object-fit: cover;
+      aspect-ratio: 3/4;
+    }
+    .about-image::after {
+      content: '';
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(135deg, var(--primary), #3b82f6);
+      border-radius: 20px;
+      z-index: -1;
+      opacity: 0.18;
+    }
+    .about-content h2 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    .about-content p {
+      color: var(--gray);
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+    }
+    .about-list { margin: 28px 0; }
+    .about-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .about-list i { color: var(--primary); font-size: 18px; }
+
+    /* SERVICES */
+    .services { background: var(--light); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+    .service-card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 0;
+      background: var(--primary);
+      transition: height 0.3s ease;
+    }
+    .service-card:hover::before { height: 100%; }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(11,95,255,0.12);
+    }
+    .service-icon {
+      width: 60px; height: 60px;
+      background: linear-gradient(135deg, var(--primary), #3b82f6);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: white;
+      margin-bottom: 24px;
+    }
+    .service-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
+    .service-card p { color: var(--gray); font-size: 0.95rem; }
+
+    /* TECHNOLOGIES */
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+    }
+    .tech-item {
+      background: white;
+      border: 1px solid #e2e8f0;
+      padding: 18px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .tech-item:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(11,95,255,0.12);
+    }
+    .tech-item i { font-size: 20px; color: var(--primary); }
+
+    /* PROCESS */
+    .process { background: var(--light); }
+    .process-timeline {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .process-timeline::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 5%; right: 5%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), #3b82f6);
+      z-index: 0;
+    }
+    .process-step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      min-width: 140px;
+    }
+    .process-number {
+      width: 80px; height: 80px;
+      background: white;
+      border: 3px solid var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 0 auto 18px;
+      box-shadow: 0 8px 20px rgba(11,95,255,0.2);
+      transition: var(--transition);
+    }
+    .process-step:hover .process-number {
+      background: var(--primary);
+      color: white;
+      transform: scale(1.08);
+    }
+    .process-step h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+    .process-step p { font-size: 0.85rem; color: var(--gray); }
+
+    /* PORTFOLIO */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+    .portfolio-card {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    .portfolio-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(7,28,61,0.15);
+    }
+    .portfolio-img {
+      height: 220px;
+      background: linear-gradient(135deg, #071C3D, #0B5FFF);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .portfolio-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+    }
+    .portfolio-body { padding: 28px; }
+    .portfolio-body h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+    .portfolio-body p { color: var(--gray); font-size: 0.95rem; margin-bottom: 18px; }
+    .portfolio-body .btn { padding: 10px 22px; font-size: 13.5px; }
+
+    /* TESTIMONIALS */
+    .testimonials { background: var(--light); }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+    .testimonial-card {
+      background: white;
+      padding: 36px 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    .testimonial-card:hover { transform: translateY(-6px); }
+    .stars {
+      color: #fbbf24;
+      font-size: 15px;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+    .testimonial-card p {
+      color: var(--gray);
+      font-size: 1rem;
+      font-style: italic;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .author-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), #3b82f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .author-info h5 { font-weight: 700; font-size: 0.95rem; }
+    .author-info span { font-size: 0.85rem; color: var(--gray); }
+
+    /* PARTNERS */
+    .partners-track {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .partner-logo {
+      width: 140px; height: 60px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--gray);
+      font-size: 14px;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .partner-logo:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: scale(1.05);
+    }
+
+    /* FAQ */
+    .faq { background: var(--light); }
+    .faq-list { max-width: 800px; margin: 0 auto; }
+    .faq-item {
+      background: white;
+      border-radius: 12px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      padding: 22px 28px;
+      background: none;
+      border: none;
+      text-align: left;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--primary); }
+    .faq-question i { transition: transform 0.3s; color: var(--primary); }
+    .faq-item.active .faq-question i { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding: 0 28px 22px;
+    }
+    .faq-answer p { color: var(--gray); font-size: 0.95rem; line-height: 1.7; }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 50px;
+    }
+    .contact-info h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 16px; }
+    .contact-info > p { color: var(--gray); margin-bottom: 32px; }
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .contact-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, rgba(11,95,255,0.12), rgba(59,130,246,0.08));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .contact-item h5 { font-weight: 600; margin-bottom: 2px; }
+    .contact-item p, .contact-item a { color: var(--gray); font-size: 0.95rem; }
+    .contact-item a:hover { color: var(--primary); }
+
+    .contact-form {
+      background: white;
+      padding: 40px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 7px;
+      color: var(--dark);
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.2s;
+      background: #f8fafc;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: white;
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* CTA */
+    .cta {
+      padding: 100px 24px;
+      background: linear-gradient(135deg, #041029 0%, #0B5FFF 100%);
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.08), transparent 50%);
+    }
+    .cta h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .cta p {
+      font-size: 1.15rem;
+      opacity: 0.9;
+      max-width: 550px;
+      margin: 0 auto 36px;
+      position: relative;
+    }
+    .cta .btn { position: relative; }
+
+    /* FOOTER */
+    footer {
+      background: var(--darker);
+      color: #94a3b8;
+      padding: 70px 24px 30px;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 40px;
+    }
+    .footer-brand img {
+      height: 40px;
+      margin-bottom: 18px;
+      filter: brightness(0) invert(1);
+    }
+    .footer-brand p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 300px;
+    }
+    .footer-col h4 {
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 11px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: white; }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .footer-social a {
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: var(--transition);
+    }
+    .footer-social a:hover {
+      background: var(--primary);
+      color: white;
+    }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 50px auto 0;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    /* BACK TO TOP */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 48px; height: 48px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 999;
+      box-shadow: 0 8px 20px rgba(11,95,255,0.35);
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .about-grid, .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .about-image { display: flex; justify-content: center; }
+      .about-image::after { display: none; }
+      .process-timeline::before { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: block; }
+      .stats { gap: 30px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .topbar-inner { justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-left">
+        <a href="tel:+258879349159"><i class="fas fa-phone"></i> +258 879349159</a>
+        <a href="mailto:buchsoftware@gmail.com"><i class="fas fa-envelope"></i> buchsoftware@gmail.com</a>
+      </div>
+      <div class="topbar-right">
+        <span><i class="fas fa-clock"></i> Seg - Sex: 08:00 - 18:00</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- HEADER -->
+  <header id="header">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <img style="border-radius: 40px;" src="logobit.png" alt="BIT Soft">
+      </a>
+      <nav class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#processo">Processo</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto" class="btn btn-primary">Solicitar Orçamento</a>
+      </nav>
+      <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-rocket"></i> SOFTWARE HOUSE PROFISSIONAL
+      </div>
+      <h1>Transformamos ideias em<br><span>soluções digitais</span></h1>
+      <p>A BIT Soft é a divisão de software da Buch Inovações e Tecnologia. Desenvolvemos produtos digitais de alto desempenho com foco em inovação, qualidade e resultados reais.</p>
+      <div class="hero-buttons">
+        <a href="#contacto" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Solicitar Orçamento</a>
+        <a href="#portfolio" class="btn btn-outline"><i class="fas fa-briefcase"></i> Ver Portfólio</a>
+      </div>
+      <div class="stats">
+        <div class="stat-item">
+          <h2 class="counter" data-target="50">0</h2>
+          <span>Projetos Entregues</span>
+        </div>
+        <div class="stat-item">
+          <h2 class="counter" data-target="100">0</h2>
+          <span>% Satisfação</span>
+        </div>
+        <div class="stat-item">
+          <h2>24/7</h2>
+          <span>Suporte Dedicado</span>
+        </div>
+        <div class="stat-item">
+          <h2 class="counter" data-target="15">0</h2>
+          <span>Tecnologias</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section why-us" id="porque">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <div class="section-label">Diferenciais</div>
+        <h2>Porque escolher a BIT Soft?</h2>
+        <p>Combinamos expertise técnica, processos ágeis e foco total no sucesso do cliente.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fas fa-bolt"></i></div>
+          <h3>Atendimento Rápido</h3>
+          <p>Resposta em até 24 horas e acompanhamento constante durante todo o projeto.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fas fa-code"></i></div>
+          <h3>Desenvolvimento Personalizado</h3>
+          <p>Cada solução é feita sob medida para as necessidades reais do seu negócio.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Segurança em Primeiro Lugar</h3>
+          <p>Aplicamos as melhores práticas de segurança e proteção de dados em todos os projetos.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fas fa-microchip"></i></div>
+          <h3>Tecnologias Modernas</h3>
+          <p>Utilizamos stacks atualizadas e ferramentas de ponta para garantir performance e escalabilidade.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fas fa-headset"></i></div>
+          <h3>Suporte Contínuo</h3>
+          <p>Suporte técnico dedicado após a entrega, com manutenção e evoluções futuras.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fas fa-award"></i></div>
+          <h3>Qualidade Garantida</h3>
+          <p>Testes rigorosos, código limpo e documentação completa em cada entrega.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="sobre">
+    <div class="section-container">
+      <div class="about-grid">
+        <div class="about-image reveal">
+          <img src="perfil.png" alt="Fundador BIT Soft">
+        </div>
+        <div class="about-content reveal">
+          <div class="section-label">Sobre Nós</div>
+          <h2>Buch Inovações e Tecnologia</h2>
+          <p>Somos uma empresa focada em transformar desafios em oportunidades através da tecnologia. A BIT Soft nasceu para entregar soluções de software modernas, robustas e centradas no usuário.</p>
+          <p>Combinamos expertise técnica com visão de negócio para criar produtos que realmente fazem a diferença no dia a dia de empresas e pessoas.</p>
+          <ul class="about-list">
+            <li><i class="fas fa-check-circle"></i> Equipe especializada e apaixonada por tecnologia</li>
+            <li><i class="fas fa-check-circle"></i> Metodologias ágeis e entrega contínua</li>
+            <li><i class="fas fa-check-circle"></i> Foco em resultados mensuráveis</li>
+            <li><i class="fas fa-check-circle"></i> Parceria de longo prazo com nossos clientes</li>
+          </ul>
+          <a href="#contacto" class="btn btn-primary">Fale Conosco</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section services" id="servicos">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <div class="section-label">O que fazemos</div>
+        <h2>Nossos Serviços</h2>
+        <p>Soluções completas de software para impulsionar o seu negócio.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+          <h3>Desenvolvimento Web</h3>
+          <p>Aplicações web modernas, responsivas e de alta performance com as melhores práticas de engenharia.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3>Aplicativos Mobile</h3>
+          <p>Apps nativos e multiplataforma com experiência fluida e integração completa com sistemas existentes.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-cloud"></i></div>
+          <h3>Soluções em Nuvem</h3>
+          <p>Arquiteturas escaláveis, seguras e otimizadas para o crescimento do seu negócio na cloud.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-robot"></i></div>
+          <h3>Inteligência Artificial</h3>
+          <p>Integração de IA e machine learning para automatizar processos e gerar insights valiosos.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-lock"></i></div>
+          <h3>Segurança & Compliance</h3>
+          <p>Proteção de dados, autenticação avançada e conformidade com as melhores práticas de segurança.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-cogs"></i></div>
+          <h3>Consultoria Técnica</h3>
+          <p>Apoio estratégico em arquitetura de software, modernização de sistemas e transformação digital.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGIES -->
+  <section class="section" id="tecnologias">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <div class="section-label">Stack Tecnológico</div>
+        <h2>Tecnologias que utilizamos</h2>
+        <p>Trabalhamos com as ferramentas e frameworks mais modernos do mercado.</p>
+      </div>
+      <div class="tech-grid reveal">
+        <div class="tech-item"><i class="fab fa-html5"></i> HTML5</div>
+        <div class="tech-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+        <div class="tech-item"><i class="fab fa-js"></i> JavaScript</div>
+        <div class="tech-item"><i class="fab fa-php"></i> PHP</div>
+        <div class="tech-item"><i class="fab fa-python"></i> Python</div>
+        <div class="tech-item"><i class="fab fa-java"></i> Java</div>
+        <div class="tech-item"><i class="fab fa-react"></i> React</div>
+        <div class="tech-item"><i class="fab fa-node-js"></i> Node.js</div>
+        <div class="tech-item"><i class="fas fa-fire"></i> Firebase</div>
+        <div class="tech-item"><i class="fas fa-database"></i> MySQL</div>
+        <div class="tech-item"><i class="fas fa-database"></i> SQLite</div>
+        <div class="tech-item"><i class="fab fa-aws"></i> AWS</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section process" id="processo">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <div class="section-label">Como trabalhamos</div>
+        <h2>Nosso Processo</h2>
+        <p>Uma metodologia clara e transparente do início ao fim do projeto.</p>
+      </div>
+      <div class="process-timeline reveal">
+        <div class="process-step">
+          <div class="process-number">01</div>
+          <h4>Planejamento</h4>
+          <p>Análise de requisitos e definição do escopo</p>
+        </div>
+        <div class="process-step">
+          <div class="process-number">02</div>
+          <h4>Design</h4>
+          <p>UI/UX e protótipos interativos</p>
+        </div>
+        <div class="process-step">
+          <div class="process-number">03</div>
+          <h4>Desenvolvimento</h4>
+          <p>Codificação ágil e entregas parciais</p>
+        </div>
+        <div class="process-step">
+          <div class="process-number">04</div>
+          <h4>Testes</h4>
+          <p>QA rigoroso e correções</p>
+        </div>
+        <div class="process-step">
+          <div class="process-number">05</div>
+          <h4>Entrega</h4>
+          <p>Deploy, treinamento e suporte</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="section" id="portfolio">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <div class="section-label">Trabalhos Realizados</div>
+        <h2>Portfólio</h2>
+        <p>Alguns dos projetos que desenvolvemos com excelência e compromisso.</p>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-card reveal">
+          <div class="portfolio-img"><i class="fas fa-shopping-cart"></i></div>
+          <div class="portfolio-body">
+            <h3>E-commerce Platform</h3>
+            <p>Plataforma completa de vendas online com gestão de stock, pagamentos e painel administrativo.</p>
+            <a href="#" class="btn btn-primary">Ver Projeto</a>
+          </div>
+        </div>
+        <div class="portfolio-card reveal">
+          <div class="portfolio-img"><i class="fas fa-hospital"></i></div>
+          <div class="portfolio-body">
+            <h3>Sistema de Gestão Escolar</h3>
+            <p>Software completo para gestão de alunos, matriculas, frequencia de notas e pagamento de mensalidade online.e muito mais.</p>
+            <a href="#" class="btn btn-primary">Ver Projeto</a>
+          </div>
+        </div>
+        <div class="portfolio-card reveal">
+          <div class="portfolio-img"><i class="fas fa-university"></i></div>
+          <div class="portfolio-body">
+            <h3>App Gestao de Passageiros , para Universidades e Empresas</h3>
+            <p>Aplicativo mobile seguro para gestão de passageiros com acesso ou nao a transporte sem uso de crachas, e pagamento Automatico.</p>
+            <a href="#" class="btn btn-primary">Ver Projeto</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials" id="depoimentos">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <div class="section-label">O que dizem</div>
+        <h2>Depoimentos</h2>
+        <p>A satisfação dos nossos clientes é a nossa maior conquista.</p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>"A BIT Soft entregou o nosso sistema no prazo e com qualidade excepcional. A equipa é profissional e muito atenta aos detalhes."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">CM</div>
+            <div class="author-info">
+              <h5>Carlos Mendes</h5>
+              <span>CEO, TechMoz</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>"Excelente comunicação e suporte. O aplicativo que desenvolveram aumentou significativamente a nossa produtividade."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AS</div>
+            <div class="author-info">
+              <h5>Ana Silva</h5>
+              <span>Directora, LogiPlus</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>"Profissionalismo do início ao fim. Recomendo fortemente a BIT Soft para qualquer projecto de software."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">JP</div>
+            <div class="author-info">
+              <h5>João Pereira</h5>
+              <span>Fundador, EduSmart</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="section" id="parceiros">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <div class="section-label">Confiança</div>
+        <h2>Parceiros & Clientes</h2>
+        <p>Empresas que confiam no nosso trabalho.</p>
+      </div>
+      <div class="partners-track reveal">
+        <div class="partner-logo">TechMoz</div>
+        <div class="partner-logo">LogiPlus</div>
+        <div class="partner-logo">EduSmart</div>
+        <div class="partner-logo">FinTech MZ</div>
+        <div class="partner-logo">HealthCare+</div>
+        <div class="partner-logo">AgroDigital</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq" id="faq">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <div class="section-label">Dúvidas Frequentes</div>
+        <h2>Perguntas Frequentes</h2>
+        <p>Respostas para as dúvidas mais comuns sobre os nossos serviços.</p>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-question">
+            Quanto tempo demora um projecto típico?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Depende da complexidade. Projectos pequenos podem ser entregues em 2-4 semanas. Projectos médios e grandes variam entre 2 a 6 meses. Sempre definimos prazos claros no planeamento.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Qual é o modelo de pagamento?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Trabalhamos normalmente com 40% no início, 30% na entrega parcial e 30% na entrega final. Também oferecemos planos mensais para manutenção e suporte contínuo.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Oferecem suporte após a entrega?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Sim. Todos os projectos incluem um período de garantia. Depois disso, oferecemos planos de manutenção mensal ou suporte pontual conforme a necessidade.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Trabalham com clientes fora de Moçambique?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Sim. Atendemos clientes em qualquer lugar através de reuniões online, ferramentas de colaboração e entrega remota de alta qualidade.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Quais tecnologias vocês dominam?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Trabalhamos com HTML5, CSS3, JavaScript, React, Node.js, PHP, Python, Java, Firebase, MySQL, SQLite, AWS e várias outras tecnologias modernas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contacto">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <div class="section-label">Fale Connosco</div>
+        <h2>Entre em Contacto</h2>
+        <p>Estamos prontos para ouvir a sua ideia e transformar em realidade.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <h3>Vamos conversar?</h3>
+          <p>Preencha o formulário ou contacte-nos directamente. Respondemos em até 24 horas.</p>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <h5>Telefone / WhatsApp</h5>
+              <a href="tel:+258879349159">+258 879349159</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <h5>Email</h5>
+              <a href="mailto:buchsoftware@gmail.com">buchsoftware@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <h5>Localização</h5>
+              <p>Chimoio, Moçambique</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <h5>Horário de Atendimento</h5>
+              <p>Segunda a Sexta: 08:00 – 18:00</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form reveal">
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nome completo</label>
+                <input type="text" name="name" required placeholder="O seu nome">
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required placeholder="seu@email.com">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Telefone</label>
+                <input type="tel" name="phone" placeholder="+258 860000000">
+              </div>
+              <div class="form-group">
+                <label>Serviço de interesse</label>
+                <select name="service">
+                  <option value="">Seleccione...</option>
+                  <option>Desenvolvimento Web</option>
+                  <option>Aplicativo Mobile</option>
+                  <option>Soluções Cloud</option>
+                  <option>Inteligência Artificial</option>
+                  <option>Consultoria</option>
+                  <option>Outro</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Mensagem</label>
+              <textarea name="message" required placeholder="Conte-nos sobre o seu projecto..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%">
+              <i class="fas fa-paper-plane"></i> Enviar Mensagem
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta">
+    <h2>Pronto para transformar a sua ideia em realidade?</h2>
+    <p>Fale connosco hoje e descubra como a BIT Soft pode impulsionar o seu negócio com tecnologia de excelência.</p>
+    <a href="#contacto" class="btn btn-white"><i class="fas fa-rocket"></i> Solicitar Orçamento</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="logobit.png" alt="BIT Soft">
+        <p>Buch Inovações e Tecnologia — Divisão de Software. Transformamos ideias em soluções digitais de excelência.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <a href="#sobre">Sobre Nós</a>
+        <a href="#porque">Diferenciais</a>
+        <a href="#processo">Processo</a>
+        <a href="#portfolio">Portfólio</a>
+      </div>
+      <div class="footer-col">
+        <h4>Serviços</h4>
+        <a href="#servicos">Desenvolvimento Web</a>
+        <a href="#servicos">Apps Mobile</a>
+        <a href="#servicos">Cloud</a>
+        <a href="#servicos">Inteligência Artificial</a>
+        <a href="#servicos">Consultoria</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="mailto:buchsoftware@gmail.com">buchsoftware@gmail.com</a>
+        <a href="tel:+258879349159">+258 879349159</a>
+        <a href="#">Chomoio, Moçambique</a>
+        <a href="#">Seg - Sex: 08:00 - 18:00</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 BIT Soft — Buch Inovações e Tecnologia. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+  <script>
+    // Navbar scroll effect
+    const header = document.getElementById('header');
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        header.classList.add('scrolled');
+        backToTop.classList.add('visible');
+      } else {
+        header.classList.remove('scrolled');
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    // Back to top
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Counter animation
+    const counters = document.querySelectorAll('.counter');
+    let counted = false;
+
+    function animateCounters() {
+      if (counted) return;
+      const statsSection = document.querySelector('.stats');
+      if (!statsSection) return;
+      const rect = statsSection.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        counted = true;
+        counters.forEach(counter => {
+          const target = +counter.getAttribute('data-target');
+          const duration = 2000;
+          const step = target / (duration / 16);
+          let current = 0;
+          const update = () => {
+            current += step;
+            if (current < target) {
+              counter.textContent = Math.ceil(current) + (target === 100 ? '' : '+');
+              requestAnimationFrame(update);
+            } else {
+              counter.textContent = target + (target === 100 ? '' : '+');
+            }
+          };
+          update();
+        });
+      }
+    }
+    window.addEventListener('scroll', animateCounters);
+    animateCounters();
+
+    // Scroll Reveal
+    const reveals = document.querySelectorAll('.reveal');
+    function revealOnScroll() {
+      reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 80) {
+          el.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+      });
+    });
+
+    // Form submit
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Mensagem enviada com sucesso! Entraremos em contacto em breve.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
